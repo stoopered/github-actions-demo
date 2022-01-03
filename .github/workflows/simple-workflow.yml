@@ -20,3 +20,15 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+  tests:
+    name: Test on ${{matrix.container }}
+    runs-on: ubuntu-latest
+    container: ${{ matrix.container }}
+    strategy:
+      matrix:
+        container: ['ubuntu:16.04', 'ubuntu:18.04']
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Print Container Version
+        run: cat /etc/debian_version
